@@ -12,10 +12,7 @@ export function Profile() {
       <ProfileDetails>
         <header>
           <h1>Nome</h1>
-          <ExternalLink
-            text='github'
-            href='https://github.com/SoshiNoir/SoshiNoir'
-          />
+          <ExternalLink text='github' href='https://github.com/SoshiNoir/' />
         </header>
         <p>
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
