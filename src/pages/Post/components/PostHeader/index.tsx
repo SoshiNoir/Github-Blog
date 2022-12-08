@@ -12,7 +12,7 @@ import { PostHeaderContainer } from './styles';
 export function PostHeader() {
   const navigate = useNavigate();
   function goBack() {
-    navigate(-1);
+    navigate('/');
   }
   return (
     <PostHeaderContainer>

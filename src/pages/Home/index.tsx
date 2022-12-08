@@ -1,19 +1,59 @@
+import { useCallback, useEffect, useState } from 'react';
+import { api } from '../../lib/axios';
 import { FindPost } from './components/FindPost';
 import { Post } from './components/Post';
 import { Profile } from './components/Profile';
 import { PostsListContainer } from './styles';
 
+export interface IPosts {
+  title: string;
+  body: string;
+  created_at: string;
+  number: number;
+  html_url: string;
+  comments: number;
+  user: {
+    login: string;
+  };
+}
+
 export function Home() {
+  //@ts-ignore
+  const username = import.meta.env.VITE_GITHUB_USERNAME;
+  //@ts-ignore
+  const repoName = import.meta.env.VITE_GITHUB_REPONAME;
+
+  const [posts, setPosts] = useState<IPosts[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getPosts = useCallback(
+    async (query: string = '') => {
+      try {
+        setIsLoading(true);
+        const response = await api.get(
+          `/search/issues?q=${query}%20repo:${username}/${repoName}`
+        );
+        console.log(response.data);
+        setPosts(response.data.items);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [posts]
+  );
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <>
       <Profile />
       <FindPost />
       <PostsListContainer>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {posts.map((post) => (
+          <Post key={post.number} post={post} />
+        ))}
       </PostsListContainer>
     </>
   );
