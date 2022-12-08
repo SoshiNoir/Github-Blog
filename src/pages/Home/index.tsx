@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Loading } from '../../components/Loading/Loading';
 import { api } from '../../lib/axios';
 import { FindPost } from './components/FindPost';
 import { Post } from './components/Post';
@@ -33,7 +34,6 @@ export function Home() {
         const response = await api.get(
           `/search/issues?q=${query}%20repo:${username}/${repoName}`
         );
-        console.log(response.data);
         setPosts(response.data.items);
       } finally {
         setIsLoading(false);
@@ -49,12 +49,16 @@ export function Home() {
   return (
     <>
       <Profile />
-      <FindPost />
-      <PostsListContainer>
-        {posts.map((post) => (
-          <Post key={post.number} post={post} />
-        ))}
-      </PostsListContainer>
+      <FindPost postsLenght={posts.length} getPosts={getPosts} />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <PostsListContainer>
+          {posts.map((post) => (
+            <Post key={post.number} post={post} />
+          ))}
+        </PostsListContainer>
+      )}
     </>
   );
 }
