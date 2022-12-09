@@ -6,7 +6,7 @@ import { Post } from './components/Post';
 import { Profile } from './components/Profile';
 import { PostsListContainer } from './styles';
 
-export interface IPosts {
+export interface IPost {
   title: string;
   body: string;
   created_at: string;
@@ -24,7 +24,7 @@ export function Home() {
   //@ts-ignore
   const repoName = import.meta.env.VITE_GITHUB_REPONAME;
 
-  const [posts, setPosts] = useState<IPosts[]>([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getPosts = useCallback(
