@@ -76,7 +76,7 @@ export function Profile() {
               <li>
                 {' '}
                 <FontAwesomeIcon icon={faUserGroup} />
-                {profileData.followers}
+                {profileData.followers} seguidores
               </li>
             </ul>
           </ProfileDetails>
