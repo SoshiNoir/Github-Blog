@@ -10,6 +10,28 @@ export const ProfileContainer = styled.section`
   padding: 2rem 2.5rem;
   display: flex;
   gap: 2rem;
+
+  @media (max-width: 28.25rem) {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 `;
 
 export const ProfilePicture = styled.img`

@@ -11,6 +11,15 @@ export const PostHeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 28.25rem) {
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      align-items: center;
+    }
+  }
+
   header {
     width: 100%;
     display: flex;
